@@ -1,5 +1,6 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
-  }
+    "HomePage": {
+        "title": "Hello world!",
+        "contactInformation": "Contact Information"
+    }
 }

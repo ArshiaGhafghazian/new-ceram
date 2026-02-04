@@ -1,3 +1,4 @@
+import Footer from "@/components/common/footer";
 import TopMenu from "@/components/common/top-menu";
 import { Button } from "@/components/ui/button";
 import { ReactNode } from "react";
@@ -15,6 +16,7 @@ export default async function Layout({
             <main>
                 {children}
             </main>
+            <Footer />
         </div>
     )
 }

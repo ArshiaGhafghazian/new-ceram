@@ -1,5 +1,6 @@
 {
-  "HomePage": {
-    "title": "سلام دنیا"
-  }
+    "HomePage": {
+        "title": "سلام دنیا",
+        "contactInformation": "اطلاعات تماس"
+    }
 }
