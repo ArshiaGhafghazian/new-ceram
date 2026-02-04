@@ -2,5 +2,10 @@ import {useTranslations} from 'next-intl';
  
 export default function HomePage() {
   const t = useTranslations('HomePage');
-  return <h1>{t('title')}</h1>;
+  return (
+    <div className='mt-20'>
+
+      <h1 className=''>{t('title')}</h1>
+    </div>
+  );
 }
