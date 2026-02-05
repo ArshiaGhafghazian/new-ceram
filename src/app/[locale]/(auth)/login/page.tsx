@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { apiUrl } from "@/configs/config";
 import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -37,8 +38,10 @@ const LoginPage = () => {
     }
     return (
         <div className="flex items-center justify-center h-dvh ">
-            <form onSubmit={handleLogin} className="flex flex-col gap-6 bg-white p-12 rounded-xl border shadow">
-                <h3>ورود به پنل کاربری</h3>
+            <form onSubmit={handleLogin} className="flex flex-col gap-6 bg-white px-12 py-6 rounded-xl border shadow">
+                <div className="flex justify-center">
+                    <Image src="/logo web.png" alt="" className='w-18 md:w-24 ' width={200} height={200} />
+                </div>
                 <div className="flex flex-col gap-2">
                     <Label>نام کاریری *</Label>
                     <Input value={formValue.username}
