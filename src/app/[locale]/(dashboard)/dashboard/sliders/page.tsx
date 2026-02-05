@@ -19,6 +19,8 @@ import {
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { useFileUploaderStore } from "@/stores/file-uploader.store";
+import UploaderModal from "@/components/common/uploader-modal";
 
 const INITIAL_FORM_VALUES = {
     alt: "",
@@ -27,11 +29,14 @@ const INITIAL_FORM_VALUES = {
 }
 
 const SlidersPage = () => {
+
+    const openUploader = useFileUploaderStore(state => state.openUploader)
+
     const [isOpen, setIsOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [sliders, setSliders] = useState<SliderType[]>([])
     const [formValue, setFormValue] = useState(INITIAL_FORM_VALUES)
-    const [openFileModal, setOpenFileModal] = useState<boolean>(false)
+
 
 
     const getSliders = async () => {
@@ -210,54 +215,8 @@ const SlidersPage = () => {
                         </div>
                         <div className="flex flex-col gap-4">
                             <Label>فایل:</Label>
-                            <Button onClick={()=>setOpenFileModal(true)}>انتخاب فایل</Button>
-                            <Dialog open={openFileModal} onOpenChange={setOpenFileModal}>
+                            <Button onClick={() => openUploader()}>انتخاب فایل</Button>
 
-                                <DialogContent dir="rtl" className="sm:max-w-6xl">
-                                    <DialogHeader>
-                                        <DialogTitle>انتخاب فایل</DialogTitle>
-                                        <DialogDescription>
-
-                                        </DialogDescription>
-                                    </DialogHeader>
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                                        {/* <div className="flex flex-col gap-4">
-                                            <Label>نام اسلایدر</Label>
-                                            <Input
-                                                type="text"
-                                                value={formValue.alt}
-                                                onChange={(e) => {
-                                                    setFormValue(prev => ({
-                                                        ...prev,
-                                                        alt: e.target.value
-                                                    }))
-                                                }} />
-                                        </div>
-                                        <div className="flex flex-col gap-4">
-                                            <Label>اولویت</Label>
-                                            <Input
-                                                type="number"
-                                                value={formValue.priority}
-                                                onChange={(e) => {
-                                                    setFormValue(prev => ({
-                                                        ...prev,
-                                                        priority: e.target.value
-                                                    }))
-                                                }} />
-                                        </div>
-                                        <div className="flex flex-col gap-4">
-                                            <Label>فایل:</Label>
-                                            <Button>انتخاب فایل</Button>
-                                        </div> */}
-
-                                    </div>
-                                    <DialogFooter className="sm:justify-start">
-                                        <DialogClose asChild>
-                                            <Button type="button">Close</Button>
-                                        </DialogClose>
-                                    </DialogFooter>
-                                </DialogContent>
-                            </Dialog>
                         </div>
 
                     </div>
@@ -268,6 +227,7 @@ const SlidersPage = () => {
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
+            <UploaderModal />
         </>
     )
 };
