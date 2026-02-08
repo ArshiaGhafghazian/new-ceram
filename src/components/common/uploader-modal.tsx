@@ -16,7 +16,11 @@ import { apiUrl, imageBaseUrl } from "@/configs/config";
 import axios from "axios";
 import { FileItem } from "@/types/file-uploader.type";
 
-const UploaderModal = () => {
+type UploaderModalPropsType = {
+    onSelect: (link: string) => void
+}
+
+const UploaderModal: React.FC<UploaderModalPropsType> = ({ onSelect }) => {
     const isUploaderOpen = useFileUploaderStore(state => state.isUploaderOpen)
     const closeUploader = useFileUploaderStore(state => state.closeUploader)
 
@@ -28,7 +32,7 @@ const UploaderModal = () => {
         setIsLoading(true)
         try {
             const res = await axios.get(url, { headers: { Authorization: `Bearer ${sessionStorage.getItem("session")}` } })
-            console.log("res:::",res.data.data);
+            console.log("res:::", res.data.data);
             setFileList(res.data.data)
 
         } catch (error) {
@@ -44,6 +48,11 @@ const UploaderModal = () => {
         getFiles()
     }, [])
 
+    const handleSelect = (link: string) => {
+        onSelect(link)
+        closeUploader()
+    }
+
 
 
     return (
@@ -57,7 +66,7 @@ const UploaderModal = () => {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-                    {fileList.map((file, index) => (<div key={`file-${file._id}-${index}`} className="bg-red-400"><img src={imageBaseUrl + file.path} alt="" /></div>))}
+                    {fileList.map((file, index) => (<div onClick={()=>{handleSelect(file.path)}} key={`file-${file._id}-${index}`} className="w-40 cursor-pointer rounded-lg overflow-hidden hover:grayscale-50 border border-primary-foreground hover:border-primary transition-all"><img src={imageBaseUrl + file.path} alt="" /></div>))}
 
 
                 </div>

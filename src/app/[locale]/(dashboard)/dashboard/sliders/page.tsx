@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { apiUrl, imageBaseUrl } from "@/configs/config";
 import { SliderType } from "@/types/slider.type";
 import axios from "axios";
-import { Plus } from "lucide-react";
+import { Plus, Trash2, Trash2Icon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 import {
@@ -17,15 +17,27 @@ import {
     DialogTitle,
 
 } from "@/components/ui/dialog"
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useFileUploaderStore } from "@/stores/file-uploader.store";
 import UploaderModal from "@/components/common/uploader-modal";
+import toast from "react-hot-toast";
 
 const INITIAL_FORM_VALUES = {
     alt: "",
     priority: "",
-    file: ""
+    url: ""
 }
 
 const SlidersPage = () => {
@@ -54,19 +66,48 @@ const SlidersPage = () => {
         }
         setIsLoading(false)
     }
+    const uoloadSlider = async () => {
+        const url = apiUrl + "sliders";
+       
+        setIsLoading(true)
+
+
+        try {
+            const res = await axios.post(url, formValue, { headers: { Authorization: `Bearer ${sessionStorage.getItem("session")}` } })
+            console.log(res);
+            setIsOpen(false)
+            getSliders()
+
+
+        } catch (error) {
+           toast.error("خطایی رخ داده است")
+            // if ((error as AxiosError<{ status: number, message: string }>).response.data.status === 401) {
+            //     router.push("/fa/login")
+            // }
+
+        }
+        setIsLoading(false)
+    }
     const deleteSlider = async (id: string) => {
         const url = apiUrl + "sliders/" + id;
         setIsLoading(true)
         try {
             const res = await axios.delete(url, { headers: { Authorization: `Bearer ${sessionStorage.getItem("session")}` } })
             getSliders()
+            toast.success("یا موفقیت حذف شد.")
+
 
         } catch (error) {
             console.log(error);
+            toast.error("خطایی رخ داده است")
 
         }
         setIsLoading(false)
     }
+
+    useEffect(()=>{
+        if(!isOpen)   setFormValue(INITIAL_FORM_VALUES)
+    },[isOpen])
 
 
     useEffect(() => {
@@ -135,6 +176,26 @@ const SlidersPage = () => {
                                                         </a>
                                                     </td>
                                                     <td className='p-1 py-3 text-center w-1/4'>
+                                                        <AlertDialog>
+                                                            <AlertDialogTrigger asChild>
+                                                                <Button size={"icon"}>
+                                                                    <Trash2 className="size-4" />
+                                                                </Button>
+                                                            </AlertDialogTrigger>
+                                                            <AlertDialogContent dir="rtl">
+                                                                <AlertDialogHeader>
+                                                                    <AlertDialogTitle>آیا از حذف مطمئن هستید؟</AlertDialogTitle>
+                                                                    <AlertDialogDescription>
+                                                                        بعد از عملیات حذف امکان بازگردانی آیتم حذف شده وجود ندارد.
+                                                                    </AlertDialogDescription>
+                                                                </AlertDialogHeader>
+                                                                <AlertDialogFooter>
+                                                                    <AlertDialogCancel>بازگشت</AlertDialogCancel>
+                                                                    <AlertDialogAction onClick={() => deleteSlider(slider._id)}>تایید</AlertDialogAction>
+                                                                </AlertDialogFooter>
+                                                            </AlertDialogContent>
+                                                        </AlertDialog>
+
                                                         {/* <Popover>
                                                     <Popover.Trigger>
                                                         <Button variant="text" color="danger">
@@ -218,16 +279,24 @@ const SlidersPage = () => {
                             <Button onClick={() => openUploader()}>انتخاب فایل</Button>
 
                         </div>
+                        {formValue.url && <div className="w-20 relative">
+                            <img src={imageBaseUrl + formValue.url} alt="" />
+                            <div
+                                onClick={() => setFormValue(prev => ({ ...prev, url: "" }))}
+                                className="absolute top-1 left-1 hover:scale-110 cursor-pointer">
+                                <Trash2Icon className="size-4" />
+                            </div>
+                        </div>}
 
                     </div>
-                    <DialogFooter className="sm:justify-start">
-                        <DialogClose asChild>
-                            <Button type="button">Close</Button>
-                        </DialogClose>
+                    <DialogFooter className="sm:justify-end mt-4">
+                            <Button variant={"destructive"} type="button">بازگشت</Button>
+                            <Button onClick={uoloadSlider} type="button">ذخیره</Button>
+                   
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
-            <UploaderModal />
+            <UploaderModal onSelect={(link) => { setFormValue(prev => ({ ...prev, url: link })) }} />
         </>
     )
 };
