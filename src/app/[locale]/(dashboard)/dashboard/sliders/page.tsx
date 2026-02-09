@@ -43,6 +43,7 @@ const INITIAL_FORM_VALUES = {
 const SlidersPage = () => {
 
     const openUploader = useFileUploaderStore(state => state.openUploader)
+    const isUploaderOpen = useFileUploaderStore(state => state.isUploaderOpen)
 
     const [isOpen, setIsOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
@@ -51,8 +52,9 @@ const SlidersPage = () => {
 
 
 
+
     const getSliders = async () => {
-        const url = apiUrl + "sliders";
+        const url = apiUrl + `sliders`;
         setIsLoading(true)
         try {
             const res = await axios.get(url)
@@ -68,7 +70,7 @@ const SlidersPage = () => {
     }
     const uoloadSlider = async () => {
         const url = apiUrl + "sliders";
-       
+
         setIsLoading(true)
 
 
@@ -76,11 +78,12 @@ const SlidersPage = () => {
             const res = await axios.post(url, formValue, { headers: { Authorization: `Bearer ${sessionStorage.getItem("session")}` } })
             console.log(res);
             setIsOpen(false)
+            toast.success("")
             getSliders()
 
 
         } catch (error) {
-           toast.error("خطایی رخ داده است")
+            toast.error("خطایی رخ داده است")
             // if ((error as AxiosError<{ status: number, message: string }>).response.data.status === 401) {
             //     router.push("/fa/login")
             // }
@@ -105,9 +108,9 @@ const SlidersPage = () => {
         setIsLoading(false)
     }
 
-    useEffect(()=>{
-        if(!isOpen)   setFormValue(INITIAL_FORM_VALUES)
-    },[isOpen])
+    useEffect(() => {
+        if (!isOpen) setFormValue(INITIAL_FORM_VALUES)
+    }, [isOpen])
 
 
     useEffect(() => {
@@ -290,13 +293,15 @@ const SlidersPage = () => {
 
                     </div>
                     <DialogFooter className="sm:justify-end mt-4">
-                            <Button variant={"destructive"} type="button">بازگشت</Button>
-                            <Button onClick={uoloadSlider} type="button">ذخیره</Button>
-                   
+                        <Button onClick={() => setIsOpen(false)} variant={"destructive"} type="button">بازگشت</Button>
+                        <Button onClick={uoloadSlider} type="button">ذخیره</Button>
+
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
-            <UploaderModal onSelect={(link) => { setFormValue(prev => ({ ...prev, url: link })) }} />
+            {isUploaderOpen &&
+                <UploaderModal onSelect={(link) => { setFormValue(prev => ({ ...prev, url: link })) }} />
+            }
         </>
     )
 };
