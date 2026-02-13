@@ -33,6 +33,7 @@ import { Input } from "@/components/ui/input";
 import { useFileUploaderStore } from "@/stores/file-uploader.store";
 import UploaderModal from "@/components/common/uploader-modal";
 import toast from "react-hot-toast";
+import { Pagination } from "@/types/api/pagination.type";
 
 const INITIAL_FORM_VALUES = {
     alt: "",
@@ -49,17 +50,22 @@ const SlidersPage = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [sliders, setSliders] = useState<SliderType[]>([])
     const [formValue, setFormValue] = useState(INITIAL_FORM_VALUES)
+    const [page, setPage] = useState<number>(1)
+    const [pagination, setPagination] = useState<Pagination>()
 
 
 
 
     const getSliders = async () => {
-        const url = apiUrl + `sliders`;
+        const url = apiUrl + `sliders?page=${page}`;
         setIsLoading(true)
         try {
             const res = await axios.get(url)
             console.log(res.data.data);
             setSliders(res.data.data)
+            setPagination(res.data.pagination)
+            console.log(res.data.pagination);
+
 
         } catch (error) {
             console.log(error);
@@ -68,7 +74,7 @@ const SlidersPage = () => {
         }
         setIsLoading(false)
     }
-    const uoloadSlider = async () => {
+    const uploadSlider = async () => {
         const url = apiUrl + "sliders";
 
         setIsLoading(true)
@@ -78,7 +84,7 @@ const SlidersPage = () => {
             const res = await axios.post(url, formValue, { headers: { Authorization: `Bearer ${sessionStorage.getItem("session")}` } })
             console.log(res);
             setIsOpen(false)
-            toast.success("")
+            toast.success("با موفقیت ایجاد شد")
             getSliders()
 
 
@@ -115,7 +121,7 @@ const SlidersPage = () => {
 
     useEffect(() => {
         getSliders()
-    }, [])
+    }, [page])
 
 
 
@@ -239,6 +245,14 @@ const SlidersPage = () => {
                         </div>
                     </div>
                 </div>
+                <div className="flex items-center justify-center gap-1 mt-4">
+                    <Button onClick={() => {
+                        if (pagination?.hasPrevPage) setPage(prev => prev - 1)
+                    }}>قبلی</Button>
+                    <Button onClick={() => {
+                        if (pagination?.hasNextPage) setPage(prev => prev + 1)
+                    }}>بعدی</Button>
+                </div>
 
             </div>
 
@@ -294,7 +308,7 @@ const SlidersPage = () => {
                     </div>
                     <DialogFooter className="sm:justify-end mt-4">
                         <Button onClick={() => setIsOpen(false)} variant={"destructive"} type="button">بازگشت</Button>
-                        <Button onClick={uoloadSlider} type="button">ذخیره</Button>
+                        <Button onClick={uploadSlider} type="button">ذخیره</Button>
 
                     </DialogFooter>
                 </DialogContent>

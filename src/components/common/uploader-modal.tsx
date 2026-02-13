@@ -33,7 +33,7 @@ const UploaderModal: React.FC<UploaderModalPropsType> = ({ onSelect }) => {
     const [file, setFile] = useState<File | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
     const [page, setPage] = useState<number>(1)
-    const [limit, setLimit] = useState<number>(2)
+  
     const [pagination, setPagination] = useState<Pagination>()
 
     const [isLoading, setIsLoading] = useState(false)
@@ -65,7 +65,7 @@ const UploaderModal: React.FC<UploaderModalPropsType> = ({ onSelect }) => {
     }
 
     const getFiles = async () => {
-        const url = apiUrl + `uploads?page=${page}&limit=${limit}`;
+        const url = apiUrl + `uploads?page=${page}&limit=10`;
         setIsLoading(true)
         try {
             const res = await axios.get(url, { headers: { Authorization: `Bearer ${sessionStorage.getItem("session")}` } })

@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Drawer,
     DrawerClose,
@@ -17,34 +17,33 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 const SideMenu = () => {
+    const [open, setOpen] = useState<boolean>(false)
     const pathname = usePathname();
     const getLinkClass = (path: string) => {
         const correctedPathname = pathname.split("/")
         const correctedPath = path.split("/")
-
-
         const final = correctedPathname[correctedPathname.length - 1]
         const finalPath = correctedPath[correctedPath.length - 1]
-
-
-
-
-
         const isActive = final === finalPath; // Check if the link is active
         return `${isActive ? "bg-primary text-white" : ""
             } hover:bg-primary  hover:text-white p-3 font-semibold text-sm flex items-center gap-2 transition-all duration-[100ms] ${!open ? "justify-center" : ""
             }`;
     };
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setOpen(false)
+    }, [pathname])
+
     return (
         <>
-            <Drawer  direction="right">
-                <DrawerTrigger asChild>
-                    <Button variant="secondary" size="icon"><Menu className='size-4' /></Button>
-                </DrawerTrigger>
+            <Button onClick={() => setOpen(true)} variant="secondary" size="icon"><Menu className='size-4' /></Button>
+            <Drawer open={open} onOpenChange={setOpen} direction="right">
+
                 <DrawerContent>
                     <DrawerHeader>
                         <div className="flex justify-center">
-                             <Image src="/logo web.png" alt="" className='w-18 md:w-32 ' width={200} height={200} />
+                            <Image src="/logo web.png" alt="" className='w-18 md:w-32 ' width={200} height={200} />
                         </div>
                     </DrawerHeader>
                     <div className="no-scrollbar overflow-y-auto px-4">
@@ -60,6 +59,13 @@ const SideMenu = () => {
                                 </NavLink>
                                 <NavLink href='/dashboard/sliders' className={getLinkClass("/dashboard/sliders")}>
                                     <li>اسلایدرها</li>
+                                </NavLink>
+                                <NavLink href='/dashboard/category' className={getLinkClass("/dashboard/category")}>
+                                    <li>دسته بندی محصولات</li>
+                                </NavLink>
+                                <NavLink href='/dashboard/subcategory' className={getLinkClass("/dashboard/subcategory")}>
+
+                                    {<li>زیر دسته بندی محصولات</li>}
                                 </NavLink>
                                 {/* <NavLink href='/dashboard/blog' className={getLinkClass("/dashboard/blog")}>
 
