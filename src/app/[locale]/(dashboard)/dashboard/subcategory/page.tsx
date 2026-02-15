@@ -246,7 +246,7 @@ const Category = () => {
             <div className="max-w-450 mx-auto px-8 md:px-16 mt-10">
                 <div className="flex justify-between items-center">
 
-                    <h1 className="text-xl font-bold text-black">زیر زیر  دسته بندی محصولات</h1>
+                    <h1 className="text-xl font-bold text-black">زیر دسته بندی محصولات</h1>
 
                     <Button onClick={() => setIsOpen(true)}>
                         <span> زیر  دسته بندی جدید</span>

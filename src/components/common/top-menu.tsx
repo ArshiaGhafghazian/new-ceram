@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client"
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
     NavigationMenu,
@@ -12,6 +13,9 @@ import {
 } from "@/components/ui/navigation-menu"
 import Image from "next/image";
 import NavLink from "./NavLink";
+import { CategoryType } from "@/types/category.type";
+import { apiUrl, imageBaseUrl } from "@/configs/config";
+import axios from "axios";
 
 const ABOUT_US: { title: string; href: string; description: string }[] = [
     {
@@ -67,6 +71,48 @@ const CATALOGS: { title: string; href: string; description: string }[] = [
 ]
 
 const TopMenu = () => {
+
+    const [categories, setCategories] = useState<CategoryType[]>([])
+    const [subCategories, setSubCategories] = useState<CategoryType[]>([])
+
+    const getCategories = async () => {
+        const url = apiUrl + "category";
+
+        try {
+            const res = await axios.get(url)
+            console.log(res.data.data);
+            setCategories(res.data.data)
+
+        } catch (error) {
+            console.log(error);
+            setCategories([])
+
+        }
+
+    }
+    const getSubCategories = async () => {
+        const url = apiUrl + "subcategory";
+
+        try {
+            const res = await axios.get(url)
+            console.log(res.data.data);
+            setSubCategories(res.data.data)
+
+        } catch (error) {
+            console.log(error);
+            setSubCategories([])
+
+        }
+
+    }
+
+    useEffect(() => {
+        getCategories()
+        getSubCategories()
+    }, [])
+
+
+
     return (
         <div className="fixed top-0 start-0  w-full flex flex-col bg-white/70 md:bg-gray-200/40 backdrop-blur-sm  shadow-md hover:bg-white/90 transition-all text-black z-2000" >
             <div className="flex items-center justify-center">
@@ -83,14 +129,20 @@ const TopMenu = () => {
                         <NavigationMenuItem dir="rtl" className="md:flex">
                             <NavigationMenuTrigger>محصولات</NavigationMenuTrigger>
                             <NavigationMenuContent>
-                                <ul className="grid w-100 gap-2 md:w-125 md:grid-cols-2 lg:w-150">
-                                    {CATALOGS.map((component) => (
+                                <ul className="grid w-100 gap-4 md:w-125 md:grid-cols-4 lg:w-150">
+                                    {categories.map((category) => (
                                         <ListItem
-                                            key={component.title}
-                                            title={component.title}
-                                            href={component.href}
+                                            key={category._id}
+                                            // title={category.name.fa}
+                                            href={`#`}
                                         >
-                                            {component.description}
+                                            <div className="flex flex-col gap-2">
+                                                <div className='w-32 h-32 rounded-lg overflow-hidden'>
+                                                    <img src={imageBaseUrl + category.image} alt={category.alt} />
+                                                </div>
+                                                <p className="text-secondary-foreground text-center font-semibold"> {category.name.fa}</p>
+                                                <p className="text-secondary-foreground text-center"> {category.size}</p>
+                                            </div>
                                         </ListItem>
                                     ))}
                                 </ul>
