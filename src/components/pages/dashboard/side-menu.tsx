@@ -67,6 +67,14 @@ const SideMenu = () => {
 
                                     {<li>زیر دسته بندی محصولات</li>}
                                 </NavLink>
+                                  <NavLink href='/dashboard/productUse' className={getLinkClass("/dashboard/productUse")}>
+
+                                    <li>محل استفاده محصولات</li>
+                                </NavLink>
+                                 <NavLink href='/dashboard/productChracteristic' className={getLinkClass("/dashboard/productChracteristic")}>
+
+                                <li>مشخصات محصولات</li>
+                                </NavLink>
                                 {/* <NavLink href='/dashboard/blog' className={getLinkClass("/dashboard/blog")}>
 
                     {open && <li>بلاگ</li>}
