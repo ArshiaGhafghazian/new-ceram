@@ -1,0 +1,82 @@
+{
+    "Index": {
+        "pages": {
+            "survey": {
+                "title": "استبيان",
+                "inputs": {
+                    "companyName": "الاسم / اسم الشركة",
+                    "familyName": "اسم العائلة",
+                    "position": "المنصب",
+                    "email": "البريد الإلكتروني",
+                    "contact": "رقم الهاتف"
+                },
+                "optionsValue": {
+                    "veryPoor": "ضعيف جدًا",
+                    "poor": "ضعيف",
+                    "average": "متوسط",
+                    "good": "جيد",
+                    "veryGood": "جيد جدًا"
+                },
+                "button": "إرسال الاستبيان"
+            },
+            "Honors and certificates": {
+                "title": "الأوسمة والشهادات"
+            },
+            "about-us": {
+                "title": "عن سارام ​​آرا"
+            },
+            "mission-and-values": {
+                "title": "المهام والقيم"
+            },
+            "customers": {
+                "title": "عملاء"
+            },
+            "shareHolders": {
+                "title": "المساهمين"
+            },
+            "board-of-directors": {
+                "title": "مجلس إدارة"
+            },
+            "responsibility": {
+                "title": "المهام الرئيسية لمجلس الإدارة"
+            },
+            "committees": {
+                "title": "اللجان"
+            }
+        },
+        "title": "مرحبًا!",
+        "toBlog": "المدونة",
+        "blog": {
+            "title": "المدونة"
+        },
+        "product": {
+            "title": "فئات المنتجات"
+        },
+        "aboutUs": {
+            "title": "من نحن"
+        },
+        "contactUs": {
+            "title": "اتصل بنا"
+        },
+        "home": {
+            "title": "الصفحة الرئيسية"
+        },
+        "virtualShowroom": {
+            "title": "الجولة الافتراضية"
+        },
+        "cataloge": {
+            "title": "الكتالوجات"
+        },
+        "menus": {
+            "title": "مرحبًا بالمدونة",
+            "aboutUs": "من نحن",
+            "blog": "المدونة",
+            "contactUs": "اتصل بنا",
+            "products": "المنتجات",
+            "virtualShowroom": "الجولة الافتراضية",
+            "home": "الصفحة الرئيسية",
+            "cataloge": "الكتالوج",
+            "languages": "اللغة"
+        }
+    }
+}

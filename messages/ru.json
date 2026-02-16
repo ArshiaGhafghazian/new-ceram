@@ -1,0 +1,83 @@
+{
+	"Index": {
+		"pages": {
+			"survey": {
+				"title": "Опросная форма",
+				"inputs": {
+					"companyName": "Имя / Название компании",
+					"familyName": "Фамилия",
+					"position": "Должность",
+					"email": "Электронная почта",
+					"contact": "Контактный телефон"
+				},
+				"optionsValue": {
+					"veryPoor": "Очень плохо",
+					"poor": "Плохо",
+					"average": "Средне",
+					"good": "Хорошо",
+					"veryGood": "Очень хорошо"
+				},
+				"button": "Отправить опрос"
+			},
+			"Honors and certificates":{
+				"title":"Почести и сертификаты"
+			},
+			"about-us":{
+				"title":"О Сараме Ара"
+			},
+			"mission-and-values":{
+				"title":"Миссии и ценности"
+			},
+            "customers": {
+                "title": "Клиенты"
+			},
+			"shareHolders": {
+                "title": "Акционеры"
+            },
+			"board-of-directors": {
+                "title": "совет директоров"
+			},
+            "responsibility": {
+                "title": "Основные обязанности совета директоров"
+			},
+            "committees": {
+                "title": "Комитеты"
+            }
+		},
+		"title": "Здравствуйте!",
+		"toBlog": "Блог",
+		"blog": {
+			"title": "Блог"
+		},
+		"product": {
+			"title": "Категории продуктов"
+		},
+		"aboutUs": {
+			"title": "О нас"
+			
+		},
+		"contactUs": {
+			"title": "Свяжитесь с нами"
+		},
+		"home": {
+			"title": "Главная страница"
+		},
+		"virtualShowroom": {
+			"title": "Виртуальный шоурум"
+		},
+		"cataloge": {
+			"title": "Каталоги"
+		},
+		"menus": {
+			"title": "Привет, блог",
+			"aboutUs": "О нас",
+			"blog": "Блог",
+			"contactUs": "Свяжитесь с нами",
+			"products": "Продукция",
+			"virtualShowroom": "Виртуальный шоурум",
+			"home": "Главная страница",
+			"cataloge": "Каталоги",
+			"languages": "Языки"
+		}
+	}
+}

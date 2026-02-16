@@ -1,6 +1,85 @@
 {
-    "HomePage": {
-        "title": "سلام دنیا",
-        "contactInformation": "اطلاعات تماس"
+    "Index": {
+        "pages": {
+            "survey": {
+                "title": "فرم نظرسنجی",
+                "inputs": {
+                    "companyName": "نام / نام شرکت",
+                    "familyName": "نام خانوادگی",
+                    "position": "سمت",
+                    "email": "پست الکترونیک",
+                    "contact": "تلفن تماس"
+                },
+                "optionsValue": {
+                    "veryPoor": "خیلی ضعیف",
+                    "poor": "ضعیف",
+                    "average": "متوسط",
+                    "good": "خوب",
+                    "veryGood": "خیلی خوب"
+                },
+                "button": "ثبت نظر سنجی"
+            },
+            "Honors and certificates": {
+                "title": "افتخارات و گواهینامه ها"
+            },
+            "about-us": {
+                "title": "درباره سرام آرا"
+            },
+            "mission-and-values": {
+                "title": "مأموریت و ارزش ها"
+            },
+            "customers": {
+                "title": "مشتریان"
+
+            },
+            "shareHolders": {
+                "title": "سهامداران"
+            
+            },
+            "board-of-directors": {
+                "title": "هیئت مدیره"
+            },
+            "responsibility": {
+                "title": "اهم وظایف هیأت مدیره"
+            },
+            "committees": {
+                "title": "کمیته ها"
+            }
+        },
+        "title": "سلام!",
+        "toBlog": "وبلاگ",
+        "blog": {
+            "title": "وبلاگ"
+        },
+        "product": {
+            "title": "دسته بندی محصولات"
+        },
+        "aboutUs": {
+            "title": "درباره ما"
+        },
+        "contactUs": {
+            "title": "ارتباط با ما"
+        },
+        "home": {
+            "title": "صفحه اصلی"
+        },
+        "virtualShowroom": {
+            "title": "تور مجازی"
+        },
+        "cataloge": {
+            "title": "کاتالوگ ها"
+        },
+        "menus": {
+            "title": "سلام وبلاگ",
+            "aboutUs": "درباره ما",
+            "blog": "وبلاگ",
+            "contactUs": "ارتباط با ما",
+            "products": "محصولات",
+            "virtualShowroom": "تور مجازی",
+            "home": "صفحه اصلی",
+            "cataloge": "کاتالوگ",
+            "languages": "زبان",
+            "login": "ورود"
+        }
     }
 }

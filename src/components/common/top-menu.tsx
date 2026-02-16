@@ -16,6 +16,7 @@ import NavLink from "./NavLink";
 import { CategoryType } from "@/types/category.type";
 import { apiUrl, imageBaseUrl } from "@/configs/config";
 import axios from "axios";
+import { useTranslations } from "next-intl";
 
 const ABOUT_US: { title: string; href: string; description: string }[] = [
     {
@@ -71,6 +72,8 @@ const CATALOGS: { title: string; href: string; description: string }[] = [
 ]
 
 const TopMenu = () => {
+    const t = useTranslations('Index');
+
 
     const [categories, setCategories] = useState<CategoryType[]>([])
     const [subCategories, setSubCategories] = useState<CategoryType[]>([])
@@ -123,11 +126,11 @@ const TopMenu = () => {
                     <NavigationMenuList>
                         <NavigationMenuItem className="">
                             <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                <NavLink href="/">خانه</NavLink>
+                                <NavLink href="/">{t("menus.home")}</NavLink>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem dir="rtl" className="md:flex">
-                            <NavigationMenuTrigger>محصولات</NavigationMenuTrigger>
+                            <NavigationMenuTrigger>{t("menus.products")}</NavigationMenuTrigger>
                             <NavigationMenuContent>
                                 <ul className="grid w-100 gap-4 md:w-125 md:grid-cols-4 lg:w-150">
                                     {categories.map((category) => (
@@ -149,7 +152,7 @@ const TopMenu = () => {
                             </NavigationMenuContent>
                         </NavigationMenuItem>
                         <NavigationMenuItem dir="rtl" className="md:flex">
-                            <NavigationMenuTrigger>کاتالوگ</NavigationMenuTrigger>
+                            <NavigationMenuTrigger>{t("menus.cataloge")}</NavigationMenuTrigger>
                             <NavigationMenuContent>
                                 <ul className="grid w-100 gap-2 md:w-125 md:grid-cols-2 lg:w-150">
                                     {CATALOGS.map((component) => (
@@ -167,12 +170,12 @@ const TopMenu = () => {
 
                         <NavigationMenuItem className="">
                             <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                <NavLink href="/">وبلاگ</NavLink>
+                                <NavLink href="/">{t("menus.blog")}</NavLink>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
 
                         <NavigationMenuItem dir="rtl" className="md:flex">
-                            <NavigationMenuTrigger>درباره ما</NavigationMenuTrigger>
+                            <NavigationMenuTrigger>{t("menus.aboutUs")}</NavigationMenuTrigger>
                             <NavigationMenuContent>
                                 <ul className="grid w-100 gap-2 md:w-125 md:grid-cols-2 lg:w-150">
                                     {ABOUT_US.map((component) => (
@@ -189,11 +192,11 @@ const TopMenu = () => {
                         </NavigationMenuItem>
                         <NavigationMenuItem className="">
                             <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                <NavLink href="/">تور مجازی</NavLink>
+                                <NavLink href="/">{t("menus.virtualShowroom")}</NavLink>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <NavigationMenuTrigger>ارتباط با ما</NavigationMenuTrigger>
+                            <NavigationMenuTrigger> {t("menus.aboutUs")}</NavigationMenuTrigger>
                             <NavigationMenuContent>
                                 <ul className="w-40">
                                     <ListItem href="/docs" title="   تماس با ما">
