@@ -6,7 +6,7 @@ import "@/app/globals.css"
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: "fa" | "ar" | "en" | "ru" }>;
 };
 
 export default async function RootLayout({ children, params }: Props) {
