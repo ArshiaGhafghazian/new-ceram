@@ -25,11 +25,9 @@ const SideMenu = () => {
     const final = correctedPathname[correctedPathname.length - 1];
     const finalPath = correctedPath[correctedPath.length - 1];
     const isActive = final === finalPath; // Check if the link is active
-    return `${
-      isActive ? "bg-primary text-white" : ""
-    } hover:bg-primary  hover:text-white p-3 font-semibold text-sm flex items-center gap-2 transition-all duration-[100ms] ${
-      !open ? "justify-center" : ""
-    }`;
+    return `${isActive ? "bg-primary text-white" : ""
+      } hover:bg-primary  hover:text-white p-3 font-semibold text-sm flex items-center gap-2 transition-all duration-[100ms] ${!open ? "justify-center" : ""
+      }`;
   };
 
   useEffect(() => {
@@ -103,6 +101,15 @@ const SideMenu = () => {
                 >
                   <li>کاتالوگ ها</li>
                 </NavLink>
+                <NavLink href='/dashboard/products' className={getLinkClass("/dashboard/products")}>
+
+                  <li>محصولات</li>
+                </NavLink>
+                <NavLink href='/dashboard/board-of-directors' className={getLinkClass("/dashboard/board-of-directors")}>
+
+                  <li>هیئت مدیره</li>
+                </NavLink>
+
                 {/* <NavLink href='/dashboard/blog' className={getLinkClass("/dashboard/blog")}>
 
                     {open && <li>بلاگ</li>}
@@ -183,9 +190,8 @@ const SideMenu = () => {
                     localStorage.removeItem("token");
                     window.location.replace("/");
                   }}
-                  className={`hover:bg-primary hover:text-primary-content p-3 font-semibold text-sm flex items-center gap-2 cursor-pointer ${
-                    !open ? "justify-center" : ""
-                  }`}
+                  className={`hover:bg-primary hover:text-primary-content p-3 font-semibold text-sm flex items-center gap-2 cursor-pointer ${!open ? "justify-center" : ""
+                    }`}
                 >
                   {/* <IconLogout width='26' height='26' viewBox='0 0 24  24 ' strokeWidth={1} /> */}
                   <span>خروج</span>

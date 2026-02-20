@@ -65,7 +65,7 @@ const UploaderModal: React.FC<UploaderModalPropsType> = ({ onSelect }) => {
     }
 
     const getFiles = async () => {
-        const url = apiUrl + `uploads?page=${page}&limit=10`;
+        const url = apiUrl + `uploads?page=${page}&limit=5`;
         setIsLoading(true)
         try {
             const res = await axios.get(url, { headers: { Authorization: `Bearer ${sessionStorage.getItem("session")}` } })
