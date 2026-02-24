@@ -140,13 +140,7 @@ const TopMenu: React.FC<TopMenuPropsType> = ({ locale }) => {
               <NavigationMenuContent>
                 <ul className="grid w-100 gap-4 md:w-125 md:grid-cols-4 lg:w-150">
                   {categories.map((category) => (
-                    // <ListItem
-                    //   key={category._id}
-                    //   // title={category.name.fa}
-                    //   href={`#`}
-                    // >
-
-                    // </ListItem>
+                  
                     <div className="flex flex-col gap-2" key={category._id}>
                       <div className="flex flex-col gap-2">
                         <div className="w-32 h-32 rounded-lg overflow-hidden">
@@ -163,29 +157,21 @@ const TopMenu: React.FC<TopMenuPropsType> = ({ locale }) => {
                           {category.size}
                         </p>
                       </div>
-                      {subCategories.map((subcategory) => (
-                        <ListItem
-                          key={subcategory._id}
-                          // title={subcategory.name.fa}
-                          href={`#`}
+                       <div
+                       
+                          className="flex flex-col gap-2 items-center justify-between px-4"
                         >
-                          <div className="flex flex-col gap-2 items-center justify-between px-4">
-                            {subCategories
-                              ?.filter(
-                                (sub) => sub.category._id === category._id,
-                              )
-                              ?.map((subCategory, i) => (
-                                <NavLink
-                                  key={`subcategory-${i + 1}`}
-                                  href={`/products?category=${category._id}&subcategory=${subCategory._id}`}
-                                >
-                                  {subcategory.name[locale]}
-                                </NavLink>
-                              ))}
-                          </div>
-                          
-                        </ListItem>
-                      ))}
+                          {subCategories
+                            ?.filter((sub) => sub.category._id === category._id)
+                            ?.map((subCategory, i) => (
+                              <NavLink
+                                key={`subcategory-${i + 1}`}
+                                href={`/products?category=${category._id}&subcategory=${subCategory._id}`}
+                              >
+                                {subCategory.name[locale]}
+                              </NavLink>
+                            ))}
+                        </div>
                     </div>
                   ))}
                 </ul>

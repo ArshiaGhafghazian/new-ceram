@@ -1,83 +1,94 @@
 {
-	"Index": {
-		"pages": {
-			"survey": {
-				"title": "Survey Form",
-				"inputs": {
-					"companyName": "Name / Company Name",
-					"familyName": "Last Name",
-					"position": "Position",
-					"email": "Email",
-					"contact": "Contact Number"
-				},
-				"optionsValue": {
-					"veryPoor": "Very Poor",
-					"poor": "Poor",
-					"average": "Average",
-					"good": "Good",
-					"veryGood": "Very Good"
-				},
-				"button": "Submit Survey"
-			},
-			"Honors and certificates":{
-				"title":"Honors and certificates"
-			},
-			"about-us":{
-				"title":"About Ceram Ara"
-			},
-			"mission-and-values":{
-				"title":"Missions and Values"
-			},
-            "customers": {
-                "title": "Customers"
-			},
-            "shareHolders": {
-                "title": "Shareholders"
-            },
-			"board-of-directors": {
-                "title": "Board of Directors"
-			},
-            "responsibility": {
-                "title": "The main duties of the board of directors"
-			},
-            "committees": {
-                "title": "Committees"
-            }
-		},
-		"title": "Hello world!",
-		"toBlog": "BLog",
-		"blog": {
-			"title": "Blogs"
-		},
-		"product": {
-			"title": "Products Category"
-		},
-		"aboutUs": {
-			"title": "About Us"
-			
-		},
-		"contactUs": {
-			"title": "Contact-Us"
-		},
-		"home": {
-			"title": "home Page"
-		},
-		"virtualShowroom": {
-			"title": "Virtual Showrooms"
-		},
-		"cataloge": {
-			"title": "Cataloges"
-		},
-		"menus": {
-			"aboutUs": "About Us",
-			"blog": "Blog",
-			"contactUs": "Contact Us",
-			"products": "Products",
-			"virtualShowroom": "Virtual Showroom",
-			"home": "Home",
-			"cataloge": "Cataloge",
-			"languages": "Language",
-			"login": "login"
-		}
-	}
+  "Index": {
+    "pages": {
+      "survey": {
+        "title": "Survey Form",
+        "inputs": {
+          "companyName": "Name / Company Name",
+          "familyName": "Last Name",
+          "position": "Position",
+          "email": "Email",
+          "contact": "Contact Number"
+        },
+        "optionsValue": {
+          "veryPoor": "Very Poor",
+          "poor": "Poor",
+          "average": "Average",
+          "good": "Good",
+          "veryGood": "Very Good"
+        },
+        "button": "Submit Survey"
+      },
+      "products": {
+        "title": "Products",
+        "productName": "Product Name",
+        "wdith": "Thickness",
+        "desc": "Description",
+        "use": "Application Area",
+        "pack": "Packaging",
+        "color": "Color",
+        "gall": "Interior Spaces Gallery",
+        "face": "Color / Face",
+        "char": "Specifications"
+      },
+      "Honors and certificates": {
+        "title": "Honors and certificates"
+      },
+      "about-us": {
+        "title": "About Ceram Ara"
+      },
+      "mission-and-values": {
+        "title": "Missions and Values"
+      },
+      "customers": {
+        "title": "Customers"
+      },
+      "shareHolders": {
+        "title": "Shareholders"
+      },
+      "board-of-directors": {
+        "title": "Board of Directors"
+      },
+      "responsibility": {
+        "title": "The main duties of the board of directors"
+      },
+      "committees": {
+        "title": "Committees"
+      }
+    },
+    "title": "Hello world!",
+    "toBlog": "BLog",
+    "blog": {
+      "title": "Blogs"
+    },
+    "product": {
+      "title": "Products Category"
+    },
+    "aboutUs": {
+      "title": "About Us"
+    },
+    "contactUs": {
+      "title": "Contact-Us"
+    },
+    "home": {
+      "title": "home Page"
+    },
+    "virtualShowroom": {
+      "title": "Virtual Showrooms"
+    },
+    "cataloge": {
+      "title": "Cataloges"
+    },
+    "menus": {
+      "aboutUs": "About Us",
+      "blog": "Blog",
+      "contactUs": "Contact Us",
+      "products": "Products",
+      "virtualShowroom": "Virtual Showroom",
+      "home": "Home",
+      "cataloge": "Cataloge",
+      "languages": "Language",
+      "login": "login"
+    }
+  }
 }

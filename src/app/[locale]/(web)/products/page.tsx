@@ -1,9 +1,10 @@
 import { apiUrl, imageBaseUrl } from "@/configs/config";
+import { ProductType } from "@/types/product.type";
 import Link from "next/link";
 
-type ProductPagePropsType = {
-  params: { locale: "fa" | "en" | "ar" | "ru" };
-  searchParams?: { [key: string]: string | string[] | undefined };
+type ProductPageProps = {
+  params: Promise<{ locale: "fa" | "en" | "ar" | "ru" }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 async function getProducts(query?: string) {
@@ -12,7 +13,7 @@ async function getProducts(query?: string) {
       `${apiUrl}products${query ? `?subcategory=${query}` : ""}`,
       {
         next: { revalidate: 0 }, // no cache
-      }
+      },
     );
 
     if (!res.ok) {
@@ -27,18 +28,21 @@ async function getProducts(query?: string) {
 }
 
 export default async function ProductPage({
-  params: { locale },
+  params,
   searchParams,
-}: ProductPagePropsType) {
-  const subCategory = searchParams?.subcategory;
+}: ProductPageProps) {
+  const { locale } = await params;
+  const sp = await searchParams;
+  const subCategory = Array.isArray(sp.subcategory)
+    ? sp.subcategory[0] // take first if array (rare but possible)
+    : typeof sp.subcategory === "string"
+      ? sp.subcategory
+      : undefined;
 
-  const productsResponse = await getProducts(
-    typeof subCategory === "string" ? subCategory : undefined
-  );
+  const productsResponse = await getProducts(subCategory);
 
-    const products = productsResponse.data
-  console.log("productsResponse:",productsResponse);
-  
+  const products = productsResponse.data as ProductType[];
+
 
   return (
     <div className="md:pt-45 px-8 md:px-16 max-w-350 mx-auto">
@@ -50,13 +54,15 @@ export default async function ProductPage({
 
       <div className="flex flex-col-reverse md:flex-row gap-6 h-full">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 md:gap-15">
-            {products?.map((product, index) => (
-
-            <Link key={`product-${index}`} href={`products/${product._id}`} className="flex flex-col items-center gap-2 overflow-hidden">
+          {products?.map((product, index) => (
+            <Link
+              key={`product-${index}`}
+              href={`products/${product._id}`}
+              className="flex flex-col items-center gap-2 overflow-hidden"
+            >
               <img src={`${imageBaseUrl}/${product.thumb}`} alt="ax" />
               <p className="text-xl font-bold">{product.name[locale]}</p>
               <p>2.5 * 2.5</p>
-
             </Link>
           ))}
         </div>
